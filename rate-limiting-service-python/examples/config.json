@@ -1,0 +1,44 @@
+{
+  "default_limits": {
+    "anonymous": {
+      "rate": 30,
+      "interval": "minute"
+    },
+    "authenticated": {
+      "rate": 100,
+      "interval": "minute"
+    },
+    "premium": {
+      "rate": 600, 
+      "interval": "minute"
+    }
+  },
+  "endpoint_overrides": {
+    "/api/sensitive-endpoint": {
+      "rate": 10,
+      "interval": "minute"
+    },
+    "/api/high-load": {
+      "rate": 5,
+      "interval": "minute"
+    }
+  },
+  "ip_limits": {
+    "enabled": true,
+    "rate": 300,
+    "interval": "hour"
+  },
+  "response_headers": {
+    "enabled": true,
+    "include_remaining": true
+  },
+  "storage": {
+    "type": "memory",
+    "options": {
+      "host": "localhost",
+      "port": 6379,
+      "key_prefix": "ratelimit:"
+    }
+  },
+  "algorithm": "token_bucket"
+} 
